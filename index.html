@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosentix | We Own Your Style</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --charcoal: #1e1e1e;
+            --black: #000000;
+            --light-grey: #e8e8e8;
+            --white: #ffffff;
+            --accent: #d9534f;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--white);
+            background-color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            transition: 0.4s ease;
+        }
+        nav.scrolled { background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 1rem 5%; }
+        .nav-links a { color: var(--white); text-decoration: none; margin-right: 20px; font-size: 0.8rem; letter-spacing: 1px; }
+        .nav-icons i { margin-left: 15px; cursor: pointer; font-size: 0.9rem; transition: 0.3s; }
+        .nav-icons i:hover { color: var(--accent); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            overflow: hidden;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        .hero-video-bg video {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.45); /* Darkens video for text contrast */
+            z-index: 2;
+        }
+
+        .hero-content { position: relative; z-index: 3; width: 35%; }
+        .hero-right { position: relative; z-index: 3; width: 30%; text-align: right; }
+
+        h1 { font-family: var(--font-heading); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1; margin-bottom: 0.5rem; }
+        .hero-subtitle { font-family: var(--font-heading); font-style: italic; font-size: 1.2rem; opacity: 0.9; }
+        .hero-desc { font-size: 0.85rem; line-height: 1.8; margin-bottom: 20px; opacity: 0.8; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--white);
+            border-radius: 30px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            background: transparent;
+        }
+        .btn:hover { background: var(--white); color: var(--black); }
+
+        /* --- COLLECTIONS --- */
+        .collections { background: var(--black); padding: 8rem 5%; text-align: center; }
+        h2 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 4rem; font-weight: 400; }
+        
+        .grid-4 { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 3rem; 
+        }
+
+        .product-card { position: relative; overflow: hidden; background: #111; aspect-ratio: 3/4; }
+        .product-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .product-card:hover img { transform: scale(1.1); }
+        
+        .price-tag {
+            position: absolute; bottom: 15px; right: 15px;
+            background: var(--accent); color: white;
+            padding: 5px 12px; font-size: 0.8rem; font-weight: 600;
+        }
+
+        /* --- STYLE SELECTOR --- */
+        .style-selector {
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px; padding: 15px 40px;
+            display: inline-flex; align-items: center; gap: 20px;
+            margin-top: 3rem;
+        }
+        .pill {
+            border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+            padding: 6px 18px; color: var(--white); text-decoration: none;
+            font-size: 0.75rem; transition: 0.3s;
+        }
+        .pill:hover { background: var(--white); color: var(--black); }
+
+        /* --- MOST BOUGHT (Light Grey) --- */
+        .most-bought { background: var(--light-grey); color: var(--black); padding: 8rem 5%; text-align: center; }
+        .grid-6 { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+            gap: 15px; margin-bottom: 3rem; 
+        }
+        .most-bought .price-tag { background: var(--black); }
+        .btn-dark { border-color: var(--black); color: var(--black); }
+        .btn-dark:hover { background: var(--black); color: var(--white); }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials { padding: 8rem 5%; text-align: center; background: var(--charcoal); }
+        .quote { font-family: var(--font-heading); font-size: 1.8rem; font-style: italic; max-width: 800px; margin: 0 auto 1rem; }
+        .author { font-size: 0.8rem; letter-spacing: 3px; color: #888; text-transform: uppercase; }
+
+        /* --- CONTACT --- */
+        .contact { background: var(--black); padding: 8rem 5%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-form { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 30px; }
+        .contact-form input, .contact-form textarea {
+            background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 0; color: white; font-family: inherit; transition: 0.3s;
+        }
+        .contact-form input:focus { outline: none; border-bottom-color: var(--white); }
+
+        /* --- REVEAL ANIMATION CLASS --- */
+        .reveal { opacity: 0; transform: translateY(30px); }
+
+    </style>
+</head>
+<body>
+
+    <nav id="nav">
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#collections">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <div class="nav-icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <i class="fa-regular fa-user"></i>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-video-bg">
+            <video autoplay loop muted playsinline>
+                <source src="https://nosentixshopping.my.canva.site/_assets/video/17bed892b15867ba535690f19b2d4755.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+
+        <div class="hero-content reveal-hero">
+            <h1>We Own<br>Your Style</h1>
+            <p class="hero-subtitle">We Own your culture</p>
+        </div>
+
+        <div class="hero-right reveal-hero">
+            <p class="hero-desc">Effectively blend comfort and style with our Casual & Everyday collection, featuring cozy sweaters, versatile denim, and relaxed-fit joggers for your adventures.</p>
+            <a href="#collections" class="btn">View Collections</a>
+        </div>
+    </section>
+
+    <section class="collections" id="collections">
+        <h2 class="reveal">Our Collections</h2>
+        <div class="grid-4">
+            <div class="product-card reveal">
+                <img src="https://images.unsplash.com/photo-1550639525-c97d455acf70?q=80&w=800" alt="Collection">
+                <span class="price-tag">₦15,000</span>
+            </div>
+            <div class="product-card reveal"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800" alt="Collection"><span class="price-tag">₦18,500</span></div>
+            <div class="product-card reveal"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=800" alt="Collection"><span class="price-tag">₦22,000</span></div>
+            <div class="product-card reveal"><img src="https://images.unsplash.com/photo-1539109132314-d4959a80370d?q=80&w=800" alt="Collection"><span class="price-tag">₦15,000</span></div>
+        </div>
+        <a href="#" class="btn reveal">See More >>></a>
+
+        <br>
+        <div class="style-selector reveal">
+            <span style="font-size: 0.7rem; letter-spacing: 1px;">SELECT YOUR STYLE</span>
+            <a href="#" class="pill">Bubu</a>
+            <a href="#" class="pill">Ankara</a>
+            <a href="#" class="pill">Corporate</a>
+            <a href="#" class="pill">Agbada</a>
+            <i class="fa-solid fa-angles-right" style="font-size: 0.7rem; opacity: 0.5;"></i>
+        </div>
+    </section>
+
+    <section class="most-bought">
+        <h2 class="reveal">Most Bought</h2>
+        <div class="grid-6">
+            <script>
+                for(let i=0; i<12; i++) {
+                    document.write(`
+                        <div class="product-card reveal">
+                            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=400" alt="Item">
+                            <span class="price-tag">₦12,000</span>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+        <a href="#" class="btn btn-dark reveal">See More >>></a>
+    </section>
+
+    <section class="testimonials">
+        <div class="reveal">
+            <p class="quote">"Absolutely stunning craftsmanship. The fit is perfect and the culture shines through."</p>
+            <p class="author">— Favour, Digital Creator</p>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-info reveal">
+            <h2 style="text-align: left;">Get In Touch</h2>
+            <p style="opacity: 0.7; max-width: 400px;">We specialize in high-impact brand identity. Reach out for custom orders or wholesale inquiries.</p>
+        </div>
+        <form class="contact-form reveal">
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email Address">
+            <textarea placeholder="How can we help you style your culture?"></textarea>
+            <button type="submit" class="btn" style="width: fit-content;">Send Message</button>
+        </form>
+    </section>
+
+    <footer style="padding: 3rem; text-align: center; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.4;">
+        &copy; 2026 NOSENTIX CLOTHING CO.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if(window.scrollY > 100) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Hero Entrance
+        gsap.from(".reveal-hero", {
+            y: 50,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.3,
+            ease: "power4.out"
+        });
+
+        // Global Scroll Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>
