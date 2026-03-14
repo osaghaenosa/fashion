@@ -6,7 +6,6 @@
     <title>Nosentix | We Own Your Style</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -140,39 +139,50 @@
         }
         .most-bought .price-tag { background: var(--black); }
 
+        /* --- REVIEWS SECTION --- */
+        .reviews { padding: 5rem 5%; background: var(--black); text-align: center; }
+        .reviews-container { display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; }
+        .reviews-container::-webkit-scrollbar { display: none; }
+        .review-card { 
+            min-width: 300px; background: #111; padding: 30px; border-radius: 15px; 
+            text-align: left; border: 1px solid #222; 
+        }
+        .stars { color: #f1c40f; margin-bottom: 15px; font-size: 0.8rem; }
+        .review-text { font-style: italic; font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px; opacity: 0.8; }
+        .client-name { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
         /* --- CONTACT --- */
-        .contact { background: var(--black); padding: 5rem 5%; display: flex; flex-direction: row; justify-content: space-between; gap: 40px; }
+        .contact { background: var(--black); padding: 5rem 5%; display: flex; flex-direction: row; justify-content: space-between; gap: 40px; border-top: 1px solid #222; }
         .contact-info, .contact-form { flex: 1; }
         .contact-form { display: flex; flex-direction: column; gap: 20px; }
         .contact-form input, .contact-form textarea {
             background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding: 12px 0; color: white; font-family: inherit;
+            padding: 12px 0; color: white; font-family: inherit; outline: none;
         }
 
-        /* --- MOBILE RESPONSIVENESS (THE FIX) --- */
+        /* --- FOOTER --- */
+        footer { padding: 3rem 5%; background: #080808; border-top: 1px solid #1a1a1a; text-align: center; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; margin-bottom: 3rem; }
+        .footer-logo { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem; }
+        .footer-col h4 { font-size: 0.9rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--white); }
+        .copyright { font-size: 0.7rem; opacity: 0.4; border-top: 1px solid #1a1a1a; padding-top: 2rem; }
+
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
             nav { padding: 1rem 5%; }
-            .nav-links { display: none; } /* Hide text links on mobile or use a burger menu */
-            
-            .hero {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                padding-top: 60px;
-            }
-            .hero-content, .hero-right {
-                width: 100%;
-                margin-bottom: 2rem;
-            }
+            .nav-links { display: none; }
+            .hero { flex-direction: column; justify-content: center; text-align: center; padding-top: 60px; }
+            .hero-content, .hero-right { width: 100%; margin-bottom: 2rem; }
             .hero-right { text-align: center; }
             h1 { font-size: 3.2rem; }
-            
             .grid-4 { grid-template-columns: repeat(2, 1fr); }
             .grid-6 { grid-template-columns: repeat(2, 1fr); }
-            
             .contact { flex-direction: column; text-align: center; }
-            .contact-info { margin-bottom: 2rem; }
-            .contact-form { width: 100%; }
+            .footer-grid { text-align: center; }
         }
 
         .reveal { opacity: 0; transform: translateY(30px); }
@@ -216,19 +226,19 @@
         <h2 class="reveal">Our Collections</h2>
         <div class="grid-4">
             <div class="product-card reveal">
-                <video autoplay loop muted playsinline>
+                <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="https://nosentixshopping.my.canva.site/_assets/video/60f77141b7db07a1e4e91be104427a32.mp4" type="video/mp4">
                 </video><span class="price-tag">₦15,000</span></div>
             <div class="product-card reveal">
-                <video autoplay loop muted playsinline>
+                <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="https://nosentixshopping.my.canva.site/_assets/video/1dd4dec49039a984b030e8a0bc05b886.mp4" type="video/mp4">
                 </video><span class="price-tag">₦18,500</span></div>
             <div class="product-card reveal">
-                <video autoplay loop muted playsinline>
+                <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="https://nosentixshopping.my.canva.site/_assets/video/b1fa1734ace6e0d6d7243df9b46e7aa6.mp4" type="video/mp4">
                 </video><span class="price-tag">₦22,000</span></div>
             <div class="product-card reveal">
-                <video autoplay loop muted playsinline>
+                <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="https://nosentixshopping.my.canva.site/_assets/video/1dd4dec49039a984b030e8a0bc05b886.mp4" type="video/mp4">
                 </video><span class="price-tag">₦15,000</span></div>
         </div>
@@ -243,8 +253,28 @@
 
     <section class="most-bought">
         <h2 class="reveal">Most Bought</h2>
-        <div class="grid-6" id="mostBoughtGrid">
+        <div class="grid-6" id="mostBoughtGrid"></div>
+    </section>
+
+    <section class="reviews">
+        <h2 class="reveal">Client Experiences</h2>
+        <div class="reviews-container">
+            <div class="review-card reveal">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="review-text">"The quality of the Senator suite I ordered exceeded my expectations. The fit is perfect and the fabric feels premium."</p>
+                <p class="client-name">— Chidi K.</p>
             </div>
+            <div class="review-card reveal">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="review-text">"Nosentix really knows how to blend culture with modern fashion. I get compliments every time I wear my Bubu."</p>
+                <p class="client-name">— Sarah O.</p>
+            </div>
+            <div class="review-card reveal">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="review-text">"Fast delivery and amazing customer service. They truly own the style game in Nigeria right now."</p>
+                <p class="client-name">— Ahmed V.</p>
+            </div>
+        </div>
     </section>
 
     <section class="contact" id="contact">
@@ -259,6 +289,44 @@
             <button type="submit" class="btn">Send</button>
         </form>
     </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">NOSENTIX</div>
+                <p style="font-size: 0.8rem; opacity: 0.6; line-height: 1.6;">Premium African contemporary wear designed for those who value culture and sophistication.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Men's Collection</a></li>
+                    <li><a href="#">Women's Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Refunds & Returns</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="nav-icons" style="margin-top: 10px; text-align: left;">
+                    <i class="fa-brands fa-instagram" style="margin-left: 0; margin-right: 15px;"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter" style="margin-left: 15px;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 NOSENTIX CLOTHING. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
